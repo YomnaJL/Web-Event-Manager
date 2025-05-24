@@ -13,4 +13,5 @@ Application web permettant de gérer facilement la création, modification, supp
 - Backend : PHP  
 - Base de données : MySQL (gestion via phpMyAdmin)  
 - Outils : Git, Visual Studio Code, XAMPP/WAMP (serveur local)
+[![Watch the demo](https://github.com/YomnaJL/Web-Event-Manager/blob/main/VidosanstitreRaliseavecClipchamp-ezgif.com-video-to-gif-converter.gif)
 
