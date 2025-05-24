@@ -1,17 +1,22 @@
-# Gestion des Événements Web
+# 🎉 Web Event Manager
 
 ## 🚀 Description  
-Application web permettant de gérer facilement la création, modification, suppression et consultation d’événements.
+A simple and intuitive web application that allows users to manage events by creating, editing, deleting, and viewing them easily through a clean interface.
 
-## 🛠️ Fonctionnalités  
-- Création, édition, suppression d’événements (titre, date, lieu, description)  
-- Recherche et affichage des événements  
-- Interface simple et responsive
+## 🛠️ Features  
+- 📅 Create, update, and delete events (title, date, location, description)  
+- 🔍 Search and view all events in a user-friendly list  
+- 📱 Responsive design for desktop and mobile  
 
-## 🧰 Technologies utilisées  
-- Frontend : HTML, CSS, JavaScript, Bootstrap  
-- Backend : PHP  
-- Base de données : MySQL (gestion via phpMyAdmin)  
-- Outils : Git, Visual Studio Code, XAMPP/WAMP (serveur local)
-[![Watch the demo](https://github.com/YomnaJL/Web-Event-Manager/blob/main/VidosanstitreRaliseavecClipchamp-ezgif.com-video-to-gif-converter.gif)
+## 🧰 Technologies Used  
+- **Frontend**: HTML, CSS, JavaScript, Bootstrap  
+- **Backend**: PHP  
+- **Database**: MySQL (managed via phpMyAdmin)  
+- **Tools**: Git, Visual Studio Code, XAMPP or WAMP (local server)
 
+---
+
+## 🎬 Demo  
+[![Watch the demo](https://github.com/YomnaJL/Web-Event-Manager/blob/main/VidosanstitreRaliseavecClipchamp-ezgif.com-video-to-gif-converter.gif)](https://github.com/YomnaJL/Web-Event-Manager/blob/main/VidosanstitreRaliseavecClipchamp.mp4)
+
+> 🔗 *Click the image above to watch the full video demo.*
