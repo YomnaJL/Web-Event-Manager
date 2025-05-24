@@ -11,7 +11,6 @@ Application web permettant de gérer facilement la création, la modification, l
 
 ## 🧰 Technologies utilisées  
 - Frontend : HTML, CSS, JavaScript, Bootstrap  
-- Backend : PHP (ou autre selon ton stack)  
-- Base de données : MySQL (ou autre selon ton choix)  
+- Backend : PHP  
 - Outils : Git, Visual Studio Code
 
