@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gestion des événements</title>
+</head>
+<body>
+ <!-- Section de création d'événements -->
+ <section class="event-create">
+    <h2>Créer un événement</h2>
+    <form id="eventForm" action="evenements.php" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="titre">Titre</label>
+            <input type="text" id="titre" name="titre" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+        <div class="form-group">
+            <label for="lieu">Lieu</label>
+            <input type="text" id="lieu" name="lieu" required>
+        </div>
+        <div class="form-group">
+            <label for="categorie">Catégorie</label>
+            <select id="categorie" name="categorie" required>
+                <option value="Toutes">Toutes</option>
+                <option value="Conférence">Conférence</option>
+                <option value="Atelier">Atelier</option>
+                <option value="Séminaire">Séminaire</option>
+                <option value="Webinaire">Webinaire</option>
+                <option value="Festival">Festival</option>
+                <option value="Concert">Concert</option>
+                <option value="Fête">Fête</option>
+                <option value="Mariage">Mariage</option>
+                <option value="Collecte de fonds">Collecte de fonds</option>
+                <option value="Hackathon">Hackathon</option>
+                <option value="Exposition d'art">Exposition d'art</option>
+                <option value="Match sportif">Match sportif</option>
+                <option value="Marathon">Marathon</option>
+                <option value="Retraite spirituelle">Retraite spirituelle</option>
+                <option value="Marché local">Marché local</option>
+                <option value="Journée portes ouvertes">Journée portes ouvertes</option>
+                <option value="Spectacle en direct">Spectacle en direct</option>
+                
+            </select>
+        </div>
+  
+        <div class="form-group">
+            <label for="image">Photo de l'événement</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn-principal">Publier l'événement</button>
+    </form>
+</section>
+
+    <script>
+        const express = require('express');
+        const multer = require('multer');
+        const path = require('path');
+
+        const app = express();
+
+        // Configuration de multer pour le téléchargement de fichiers
+        const storage = multer.diskStorage({
+            destination: function (req, file, cb) {
+                cb(null, 'uploads/');  // Dossier où enregistrer les images
+            },
+            filename: function (req, file, cb) {
+                cb(null, Date.now() + path.extname(file.originalname));  // Nom unique pour chaque image
+            }
+        });
+
+        const upload = multer({ storage: storage });
+
+        // Middleware pour gérer le formulaire
+        app.use(express.urlencoded({ extended: true }));
+
+        // Route pour créer un événement
+        app.post('/submit_event', upload.single('image'), (req, res) => {
+            const { titre, description, date, lieu, categorie, nombre_inscriptions } = req.body;
+            const image = req.file; // Contient les informations sur l'image téléchargée
+
+            // Vous pouvez enregistrer l'événement dans la base de données ici, en incluant l'image
+            console.log('Titre:', titre);
+            console.log('Description:', description);
+            console.log('Date:', date);
+            console.log('Lieu:', lieu);
+            console.log('Catégorie:', categorie);
+            console.log('Image:', image.filename);
+
+            res.send('Événement créé avec succès!');
+        });
+
+        // Serveur statique pour les fichiers téléchargés
+        app.use('/uploads', express.static('uploads'));
+
+        app.listen(3000, () => {
+            console.log('Serveur démarré sur le port 3000');
+        });
+    </script>
+
+    <style>
+        /* Section création d'événements */
+        .event-create {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: linear-gradient(135deg, #f9f9f9 0%, #e0e0e0 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-create:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-create h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-family: Georgia, Times, 'Times New Roman', serif;    
+        }
+
+        .event-create .form-group {
+            margin-bottom: 1.5rem;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .event-create label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .event-create input,
+        .event-create textarea,
+        .event-create select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .event-create input:focus,
+        .event-create textarea:focus,
+        .event-create select:focus {
+            border-color: #ae34db;
+            outline: none;
+        }
+
+        .event-create button {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(45deg, #580994, #fa2cb9);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .event-create button:hover {
+            background: linear-gradient(45deg, #ec03d4, #b20dee);
+            transform: translateY(-2px);
+        }
+
+        /* Champ de téléchargement d'image */
+        .event-create input[type="file"] {
+            border: 1px solid #ccc;
+            padding: 0.5rem;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s ease;
+        }
+
+        .event-create input[type="file"]:focus {
+            border-color: #3498db;
+        }
+    </style>
+
+</body>
+</html>
